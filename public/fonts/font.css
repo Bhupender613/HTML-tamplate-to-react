@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Futura LT Bold';
+  src: url('Futura LT Bold.eot');
+  src: url('Futura LT Bold.eot?#iefix') format('embedded-opentype'),
+       url('Futura LT Bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FuturaLT-Bold';
+  src: url('FuturaLT-Bold.svg#FuturaLT-Bold') format('svg'),
+       url('FuturaLT-Bold.ttf') format('truetype'),
+       url('FuturaLT-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+

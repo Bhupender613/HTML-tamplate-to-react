@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Context from "./Createcontextdata";
 const Header = () => {
+  const navigate = useNavigate();
+  let logindata = useContext(Context);
   const [find, setfind] = useState("");
   const [value, setvalue] = useState("");
   const [data, setdata] = useState("");
@@ -17,6 +20,11 @@ const Header = () => {
       .get("https://fakestoreapi.com/products")
       .then((res) => setfind(res.data));
   }, []);
+
+  const productid = (e, id) => {
+    logindata.seturl(`https://fakestoreapi.com/products/${id}`);
+    navigate(`/Productdetail?id=${id}`);
+  };
 
   const handleEnter = (e) => {
     let value = e.target.value;
@@ -216,15 +224,21 @@ const Header = () => {
                 </div>
                 <div className="col-6 text-right">
                   <div className="right-side">
-                    <ul>
-                      <li>
-                        <a href="#">Register</a>
-                      </li>
-                      <span />
-                      <li>
-                        <a href="#">Sign In</a>
-                      </li>
-                    </ul>
+                    {logindata.user ? (
+                      <ul>
+                        <li>{logindata.user}</li>
+                      </ul>
+                    ) : (
+                      <ul>
+                        <li>
+                          <Link to="/Registerpage">Register</Link>
+                        </li>
+                        <span />
+                        <li>
+                          <Link to="/Loginpage">Sign In</Link>
+                        </li>
+                      </ul>
+                    )}
                   </div>
                 </div>
               </div>
@@ -284,7 +298,10 @@ const Header = () => {
                         {value &&
                           value.map((item, index) => (
                             <>
-                              <li key={index}>
+                              <li
+                                key={item.id}
+                                onClick={(e) => productid(e, item.id)}
+                              >
                                 <img src={item.image} width="30px" />
                                 {item.title}
                               </li>

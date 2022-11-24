@@ -14,7 +14,7 @@ const Productdetail = () => {
       .get(set.url)
       .then((res) => setdata(res.data))
       .catch((error) => seterror(error));
-  }, []);
+  }, [set.url]);
 
   if (error === "") {
     return (

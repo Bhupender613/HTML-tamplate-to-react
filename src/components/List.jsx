@@ -8,16 +8,23 @@ const List = () => {
 
   const navigate = useNavigate();
   const [data, setdata] = useState("");
+  const [next, setnext] = useState(10);
+
   useEffect(() => {
     axios
-      .get("https://fakestoreapi.com/products")
+      .get(`https://fakestoreapi.com/products?limit=${next}`)
       .then((res) => setdata(res.data));
-  }, []);
+  }, [next]);
 
   const productid = (e, id) => {
     set.seturl(`https://fakestoreapi.com/products/${id}`);
     navigate(`/Productdetail?id=${id}`);
   };
+
+  const handlenextpage = () => {
+    setnext(2 * 10);
+  };
+  console.log(data.length);
   return (
     <>
       <>
@@ -126,18 +133,8 @@ const List = () => {
                       </a>
                     </li>
                     <li className="page-item">
-                      <a className="page-link" href="#">
+                      <a className="page-link" onClick={handlenextpage}>
                         2
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">
-                        3
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">
-                        Next &gt;
                       </a>
                     </li>
                   </ul>

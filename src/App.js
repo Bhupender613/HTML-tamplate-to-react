@@ -7,12 +7,15 @@ import List from "./components/List";
 import Context from "./components/Createcontextdata";
 import Productdetail from "./components/Productdetail";
 import Category from "./components/Category";
+import Registerpage from "./components/Registerpage";
+import Loginpage from "./components/Loginpage";
 
 function App() {
   const [url, seturl] = useState("");
+  const [user, setuser] = useState("");
   return (
     <>
-      <Context.Provider value={{ url, seturl }}>
+      <Context.Provider value={{ url, seturl, user, setuser }}>
         <Header />
 
         <Routes>
@@ -20,6 +23,8 @@ function App() {
           <Route path="/List" element={<List />} />
           <Route path="/Productdetail" element={<Productdetail />} />
           <Route path="/Category" element={<Category />} />
+          <Route path="/Registerpage" element={<Registerpage />} />
+          <Route path="/Loginpage" element={<Loginpage />} />
         </Routes>
         <Footer />
       </Context.Provider>
